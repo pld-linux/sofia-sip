@@ -11,7 +11,7 @@
 Summary: Sofia SIP User-Agent library 
 Name: sofia-sip
 Version: 1.11.4
-Release: 1%{?dist}
+Release: 0.1
 License: Lesser GNU Public License 2.1
 Group: System Environment/Libraries
 URL: http://sf.net/projects/sofia-sip
