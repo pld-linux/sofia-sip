@@ -1,25 +1,27 @@
-# Bconds:
-%bcond_with    doxygen # Generate documents using doxygen and dot
-%bcond_with    check   # Run tests
-%bcond_without openssl # No OpenSSL (TLS)
-%bcond_with    sigcomp # with Sofia SigComp
+#
+# Conditional build:
+%bcond_with    doxygen	# Generate documents using doxygen and dot
+%bcond_with    check	# Run tests
+%bcond_without openssl	# No OpenSSL (TLS)
+%bcond_with    sigcomp	# with Sofia SigComp
 #
 Summary:	Sofia SIP User-Agent library
+Summary(pl):	Biblioteka agenta u¿ytkownika Sofia SIP
 Name:		sofia-sip
 Version:	1.11.4
 Release:	1
 License:	LGPL 2.1
 Group:		Libraries
-URL:		http://sf.net/projects/sofia-sip
-Source0:	%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/sofia-sip/%{name}-%{version}.tar.gz
+URL:		http://sf.net/projects/sofia-sip/
 %if %{with doxygen}
-BuildRequires: doxygen >= 1.3.4
-BuildRequires: graphviz >= 1.9
+BuildRequires:	doxygen >= 1.3.4
+BuildRequires:	graphviz >= 1.9
 %endif
-%{?with_openssl:BuildRequires: openssl-devel >= 0.9.7}
+%{?with_openssl:BuildRequires:	openssl-devel >= 0.9.7}
 %if %{with sigcomp}
-BuildRequires: sofia-sigcomp-devel >= 2.5.0
-Requires: sofia-sigcomp >= 2.5.0
+BuildRequires:	sofia-sigcomp-devel >= 2.5.0
+Requires:	sofia-sigcomp >= 2.5.0
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -29,29 +31,45 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Sofia SIP is a RFC-3261-compliant library for SIP user agents and
 other network elements.
 
-%package	devel
+%description -l pl
+Sofia SIP to zgodna z RFC-3261 biblioteka dla agentów u¿ytkownika SIP
+i innych elementów sieciowych.
+
+%package devel
 Summary:        Sofia-SIP Development Package
+Summary(pl):	Pakiet programistyczny Sofia-SIP
 Group:     	Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
-%description	devel
+%description devel
 Development package for Sofia SIP UA library.
 
-%package	static
+%description devel -l pl
+Pakiet programistyczny dla biblioteki Sofia SIP UA.
+
+%package static
 Summary:        Sofia-SIP Development Package - static library
+Summary(pl):	Statyczna biblioteka Sofia-SIP
 Group:     	Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
-%description	static
+%description static
 Static library for Sofia SIP UA library.
 
-%package	utils
-Summary:        Sofia-SIP utils
-Group:     	?
-Requires:	sofia-sip = %{version}-%{release}
+%description static -l pl
+Statyczna biblioteka Sofia SIP UA.
 
-%description	utils
+%package utils
+Summary:        Sofia-SIP utils
+Summary(pl):	Narzêdzia Sofia-SIP
+Group:     	Networking/Utilities
+Requires:	%{name} = %{version}-%{release}
+
+%description utils
 Command line utilities for Sofia SIP UA library.
+
+%description utils -l pl
+Dzia³aj±ce z linii poleceñ narzêdzia do biblioteki Sofia SIP UA.
 
 %prep
 %setup -q
@@ -62,14 +80,16 @@ Command line utilities for Sofia SIP UA library.
 	--with%{!?with_sigcomp:out}-sigcomp 
 	
 %{__make}
-%{?with_check:make check}
-%{?with_doxygen:make check}
+%{?with_check:%{__make} check}
+%{?with_doxygen:%{__make} check} # ???
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-rm $RPM_BUILD_ROOT/%{_bindir}/addrinfo
+
+rm $RPM_BUILD_ROOT%{_bindir}/addrinfo
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -81,13 +101,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc TODO README.developers
-%{?with_doxygen:docs/*}
-%{_aclocaldir}/*.m4
-%{_includedir}/sofia-sip
-%{_libdir}/sofia
+%doc TODO README.developers %{?with_doxygen:docs/*}
+%attr(755,root,root) %{_libdir}/libsofia-sip-ua.so
 %{_libdir}/libsofia-sip-ua.la
-%{_libdir}/libsofia-sip-ua.so
+%{_libdir}/sofia
+%{_includedir}/sofia-sip
+%{_aclocaldir}/*.m4
 %{_pkgconfigdir}/%{name}-ua.pc
 
 %files static
