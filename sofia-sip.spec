@@ -36,9 +36,9 @@ Sofia SIP to zgodna z RFC-3261 biblioteka dla agentów u¿ytkownika SIP
 i innych elementów sieciowych.
 
 %package devel
-Summary:        Sofia-SIP Development Package
+Summary:	Sofia-SIP Development Package
 Summary(pl):	Pakiet programistyczny Sofia-SIP
-Group:     	Development/Libraries
+Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
@@ -48,9 +48,9 @@ Development package for Sofia SIP UA library.
 Pakiet programistyczny dla biblioteki Sofia SIP UA.
 
 %package static
-Summary:        Sofia-SIP Development Package - static library
+Summary:	Sofia-SIP Development Package - static library
 Summary(pl):	Statyczna biblioteka Sofia-SIP
-Group:     	Development/Libraries
+Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
@@ -60,9 +60,9 @@ Static library for Sofia SIP UA library.
 Statyczna biblioteka Sofia SIP UA.
 
 %package utils
-Summary:        Sofia-SIP utils
+Summary:	Sofia-SIP utils
 Summary(pl):	Narzêdzia Sofia-SIP
-Group:     	Networking/Utilities
+Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
 
 %description utils
@@ -77,8 +77,8 @@ Dzia³aj±ce z linii poleceñ narzêdzia do biblioteki Sofia SIP UA.
 %build
 %configure \
 	--with%{!?with_openssl:out}-openssl \
-	--with%{!?with_sigcomp:out}-sigcomp 
-	
+	--with%{!?with_sigcomp:out}-sigcomp
+
 %{__make}
 %{?with_check:%{__make} check}
 %{?with_doxygen:%{__make} check} # ???
