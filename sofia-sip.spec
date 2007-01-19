@@ -8,11 +8,12 @@
 Summary:	Sofia SIP User-Agent library
 Summary(pl):	Biblioteka agenta u¿ytkownika Sofia SIP
 Name:		sofia-sip
-Version:	1.11.4
+Version:	1.12.4
 Release:	1
 License:	LGPL 2.1
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/sofia-sip/%{name}-%{version}.tar.gz
+# Source0-md5:	2aa264efc9affd9f060c9d19f3ee3438
 URL:		http://sf.net/projects/sofia-sip/
 %if %{with doxygen}
 BuildRequires:	doxygen >= 1.3.4
@@ -97,25 +98,20 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS COPYRIGHTS README RELEASE ChangeLog
-%attr(755,root,root) %{_libdir}/libsofia-sip-ua.so.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
 %doc TODO README.developers %{?with_doxygen:docs/*}
-%attr(755,root,root) %{_libdir}/libsofia-sip-ua.so
-%{_libdir}/libsofia-sip-ua.la
-%{_libdir}/sofia
-%{_includedir}/sofia-sip
-%{_aclocaldir}/*.m4
-%{_pkgconfigdir}/%{name}-ua.pc
+%attr(755,root,root) %{_libdir}/lib*.so
+%{_libdir}/lib*.la
+%{_includedir}/*
+%{_pkgconfigdir}/*.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libsofia-sip-ua.a
+%{_libdir}/lib*.a
 
 %files utils
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/nua_cli
-%attr(755,root,root) %{_bindir}/localinfo
-%attr(755,root,root) %{_bindir}/sip-options
-%attr(755,root,root) %{_bindir}/sip-date
+%attr(755,root,root) %{_bindir}/*
