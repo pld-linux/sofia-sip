@@ -26,8 +26,6 @@ Requires:	sofia-sigcomp >= 2.5.0
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define 	_includedir	%{_prefix}/include/sofia-sip
-
 %description
 Sofia SIP is a RFC-3261-compliant library for SIP user agents and
 other network elements.
@@ -99,6 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS COPYRIGHTS README RELEASE ChangeLog
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
+%{_datadir}/sofia-sip
 
 %files devel
 %defattr(644,root,root,755)
