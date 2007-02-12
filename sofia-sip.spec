@@ -6,7 +6,7 @@
 %bcond_with    sigcomp	# with Sofia SigComp
 #
 Summary:	Sofia SIP User-Agent library
-Summary(pl):	Biblioteka agenta u¿ytkownika Sofia SIP
+Summary(pl.UTF-8):   Biblioteka agenta uÅ¼ytkownika Sofia SIP
 Name:		sofia-sip
 Version:	1.12.4
 Release:	1
@@ -30,45 +30,45 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Sofia SIP is a RFC-3261-compliant library for SIP user agents and
 other network elements.
 
-%description -l pl
-Sofia SIP to zgodna z RFC-3261 biblioteka dla agentów u¿ytkownika SIP
-i innych elementów sieciowych.
+%description -l pl.UTF-8
+Sofia SIP to zgodna z RFC-3261 biblioteka dla agentÃ³w uÅ¼ytkownika SIP
+i innych elementÃ³w sieciowych.
 
 %package devel
 Summary:	Sofia-SIP Development Package
-Summary(pl):	Pakiet programistyczny Sofia-SIP
+Summary(pl.UTF-8):   Pakiet programistyczny Sofia-SIP
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Development package for Sofia SIP UA library.
 
-%description devel -l pl
+%description devel -l pl.UTF-8
 Pakiet programistyczny dla biblioteki Sofia SIP UA.
 
 %package static
 Summary:	Sofia-SIP Development Package - static library
-Summary(pl):	Statyczna biblioteka Sofia-SIP
+Summary(pl.UTF-8):   Statyczna biblioteka Sofia-SIP
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static library for Sofia SIP UA library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka Sofia SIP UA.
 
 %package utils
 Summary:	Sofia-SIP utils
-Summary(pl):	Narzêdzia Sofia-SIP
+Summary(pl.UTF-8):   NarzÄ™dzia Sofia-SIP
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
 
 %description utils
 Command line utilities for Sofia SIP UA library.
 
-%description utils -l pl
-Dzia³aj±ce z linii poleceñ narzêdzia do biblioteki Sofia SIP UA.
+%description utils -l pl.UTF-8
+DziaÅ‚ajÄ…ce z linii poleceÅ„ narzÄ™dzia do biblioteki Sofia SIP UA.
 
 %prep
 %setup -q
