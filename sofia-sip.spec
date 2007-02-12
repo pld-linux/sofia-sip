@@ -6,7 +6,7 @@
 %bcond_with    sigcomp	# with Sofia SigComp
 #
 Summary:	Sofia SIP User-Agent library
-Summary(pl.UTF-8):   Biblioteka agenta użytkownika Sofia SIP
+Summary(pl.UTF-8):	Biblioteka agenta użytkownika Sofia SIP
 Name:		sofia-sip
 Version:	1.12.4
 Release:	1
@@ -36,7 +36,7 @@ i innych elementów sieciowych.
 
 %package devel
 Summary:	Sofia-SIP Development Package
-Summary(pl.UTF-8):   Pakiet programistyczny Sofia-SIP
+Summary(pl.UTF-8):	Pakiet programistyczny Sofia-SIP
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -48,7 +48,7 @@ Pakiet programistyczny dla biblioteki Sofia SIP UA.
 
 %package static
 Summary:	Sofia-SIP Development Package - static library
-Summary(pl.UTF-8):   Statyczna biblioteka Sofia-SIP
+Summary(pl.UTF-8):	Statyczna biblioteka Sofia-SIP
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -60,7 +60,7 @@ Statyczna biblioteka Sofia SIP UA.
 
 %package utils
 Summary:	Sofia-SIP utils
-Summary(pl.UTF-8):   Narzędzia Sofia-SIP
+Summary(pl.UTF-8):	Narzędzia Sofia-SIP
 Group:		Networking/Utilities
 Requires:	%{name} = %{version}-%{release}
 
