@@ -8,12 +8,12 @@
 Summary:	Sofia SIP User-Agent library
 Summary(pl.UTF-8):	Biblioteka agenta użytkownika Sofia SIP
 Name:		sofia-sip
-Version:	1.12.6
+Version:	1.12.9
 Release:	1
 License:	LGPL 2.1
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/sofia-sip/%{name}-%{version}.tar.gz
-# Source0-md5:	8c24a9d58179f8fa7c7edd4af7dab104
+# Source0-md5:	e91bb7b6a3a5c21f2b09ffc6297da604
 URL:		http://sf.net/projects/sofia-sip/
 %if %{with doxygen}
 BuildRequires:	doxygen >= 1.3.4
@@ -99,7 +99,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS COPYRIGHTS README RELEASE ChangeLog
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/libsofia-sip-ua*.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libsofia-sip-ua-glib.so.3
+%attr(755,root,root) %ghost %{_libdir}/libsofia-sip-ua.so.0
 %{_datadir}/sofia-sip
 
 %files devel
@@ -117,3 +119,4 @@ rm -rf $RPM_BUILD_ROOT
 %files utils
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
+%{_mandir}/man1/*.1*
