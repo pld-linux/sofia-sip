@@ -8,12 +8,12 @@
 Summary:	Sofia SIP User-Agent library
 Summary(pl.UTF-8):	Biblioteka agenta użytkownika Sofia SIP
 Name:		sofia-sip
-Version:	1.12.9
+Version:	1.12.10
 Release:	1
 License:	LGPL 2.1
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/sofia-sip/%{name}-%{version}.tar.gz
-# Source0-md5:	e91bb7b6a3a5c21f2b09ffc6297da604
+# Source0-md5:	9e07fde3ad2009e44d1100ca3950d02b
 URL:		http://sf.net/projects/sofia-sip/
 %if %{with doxygen}
 BuildRequires:	doxygen >= 1.3.4
