@@ -9,7 +9,7 @@ Summary:	Sofia SIP User-Agent library
 Summary(pl.UTF-8):	Biblioteka agenta użytkownika Sofia SIP
 Name:		sofia-sip
 Version:	1.12.10
-Release:	1
+Release:	2
 License:	LGPL 2.1
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/sofia-sip/%{name}-%{version}.tar.gz
