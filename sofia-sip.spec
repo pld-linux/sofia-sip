@@ -12,19 +12,23 @@ Version:	1.12.10
 Release:	2
 License:	LGPL 2.1
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/sofia-sip/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/sofia-sip/%{name}-%{version}.tar.gz
 # Source0-md5:	9e07fde3ad2009e44d1100ca3950d02b
 URL:		http://sf.net/projects/sofia-sip/
 %if %{with doxygen}
 BuildRequires:	doxygen >= 1.3.4
 BuildRequires:	graphviz >= 1.9
 %endif
+BuildRequires:	glib2-devel
 %{?with_openssl:BuildRequires:	openssl-devel >= 0.9.7}
+BuildRequires:	pkgconfig
 %if %{with sigcomp}
 BuildRequires:	sofia-sigcomp-devel >= 2.5.0
 Requires:	sofia-sigcomp >= 2.5.0
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%undefine	__cxx
 
 %description
 Sofia SIP is a RFC-3261-compliant library for SIP user agents and
