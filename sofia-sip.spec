@@ -9,7 +9,7 @@ Summary:	Sofia SIP User-Agent library
 Summary(pl.UTF-8):	Biblioteka agenta użytkownika Sofia SIP
 Name:		sofia-sip
 Version:	1.12.10
-Release:	3
+Release:	4
 License:	LGPL 2.1
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/sofia-sip/%{name}-%{version}.tar.gz
@@ -29,6 +29,7 @@ Requires:	sofia-sigcomp >= 2.5.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %undefine	__cxx
+%define		skip_post_check_so	libsofia-sip-ua-glib.so.3.0.0
 
 %description
 Sofia SIP is a RFC-3261-compliant library for SIP user agents and
