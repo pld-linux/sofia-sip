@@ -9,7 +9,7 @@ Summary:	Sofia SIP User-Agent library
 Summary(pl.UTF-8):	Biblioteka agenta użytkownika Sofia SIP
 Name:		sofia-sip
 Version:	1.12.11
-Release:	3
+Release:	4
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/sofia-sip/%{name}-%{version}.tar.gz
@@ -78,6 +78,10 @@ Działające z linii poleceń narzędzia do biblioteki Sofia SIP UA.
 
 %prep
 %setup -q
+
+%{__sed} -E -i -e '1s,#!\s*/usr/bin/env\s+awk(\s|$),#!/bin/awk\1,' \
+      libsofia-sip-ua/msg/msg_parser.awk \
+      libsofia-sip-ua/su/tag_dll.awk
 
 %build
 %configure \
