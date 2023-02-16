@@ -1,0 +1,11 @@
+--- sofia-sip-1.13.13/libsofia-sip-ua-glib/Makefile.am.orig	2023-02-06 18:34:51.000000000 +0100
++++ sofia-sip-1.13.13/libsofia-sip-ua-glib/Makefile.am	2023-02-16 20:45:05.694489416 +0100
+@@ -18,7 +18,7 @@ lib_LTLIBRARIES += libsofia-sip-ua-glib.
+ endif
+ 
+ libsofia_sip_ua_glib_la_SOURCES =
+-libsofia_sip_ua_glib_la_LIBADD = $(GLIB_TARGETS) $(GLIB_LIBS)
++libsofia_sip_ua_glib_la_LIBADD = $(top_builddir)/libsofia-sip-ua/libsofia-sip-ua.la $(GLIB_TARGETS) $(GLIB_LIBS)
+ 
+ # set the libtool version info version:revision:age for libsofia-sip-ua-glib
+ # - soname to 'libsofia-sip-ua-glib.so.(CUR-AGE)'

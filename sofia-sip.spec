@@ -1,27 +1,33 @@
 #
 # Conditional build:
-%bcond_with    doxygen	# Generate documents using doxygen and dot
-%bcond_with    check	# Run tests
-%bcond_without openssl	# No OpenSSL (TLS)
+%bcond_with    doxygen	# doxygen+dot based documentation
+%bcond_with    check	# testing
+%bcond_without openssl	# TLS support via OpenSSL
 %bcond_with    sigcomp	# with Sofia SigComp [Nokia proprietary?]
 #
 Summary:	Sofia SIP User-Agent library
 Summary(pl.UTF-8):	Biblioteka agenta użytkownika Sofia SIP
 Name:		sofia-sip
-Version:	1.12.11
-Release:	4
+Version:	1.13.13
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://downloads.sourceforge.net/sofia-sip/%{name}-%{version}.tar.gz
-# Source0-md5:	f3582c62080eeecd3fa4cd5d4ccb4225
-URL:		http://sf.net/projects/sofia-sip/
+#Source0Download: https://github.com/freeswitch/sofia-sip/releases
+Source0:	https://github.com/freeswitch/sofia-sip/archive/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	52802d92562e776d2eb14e38efbf0fcc
+Patch0:		%{name}-link.patch
+URL:		https://sofia-sip.sourceforge.net/
+BuildRequires:	autoconf >= 2.57
+BuildRequires:	automake >= 1:1.7
 %if %{with doxygen}
 BuildRequires:	doxygen >= 1.3.4
 BuildRequires:	graphviz >= 1.9
 %endif
 BuildRequires:	glib2-devel >= 2.0
+BuildRequires:	libtool >= 1:1.4
 %{?with_openssl:BuildRequires:	openssl-devel >= 0.9.7}
 BuildRequires:	pkgconfig
+BuildRequires:	sed >= 4.0
 %if %{with sigcomp}
 BuildRequires:	sofia-sigcomp-devel >= 2.5.0
 Requires:	sofia-sigcomp >= 2.5.0
@@ -78,12 +84,18 @@ Działające z linii poleceń narzędzia do biblioteki Sofia SIP UA.
 
 %prep
 %setup -q
+%patch0 -p1
 
-%{__sed} -E -i -e '1s,#!\s*/usr/bin/env\s+awk(\s|$),#!/bin/awk\1,' \
-      libsofia-sip-ua/msg/msg_parser.awk \
-      libsofia-sip-ua/su/tag_dll.awk
+%{__sed} -i -e '1s,/usr/bin/env awk,/bin/awk,' \
+	libsofia-sip-ua/msg/msg_parser.awk \
+	libsofia-sip-ua/su/tag_dll.awk
 
 %build
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--with-openssl%{!?with_openssl:=no} \
 	--with-sigcomp%{!?with_sigcomp:=no}
@@ -99,7 +111,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT{%{_bindir}/addrinfo,%{_mandir}/man1/addrinfo.1}
+%{__rm} $RPM_BUILD_ROOT%{_bindir}/addrinfo
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libsofia-sip-ua*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -121,9 +135,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc TODO README.developers %{?with_doxygen:docs/*}
 %attr(755,root,root) %{_libdir}/libsofia-sip-ua.so
 %attr(755,root,root) %{_libdir}/libsofia-sip-ua-glib.so
-%{_libdir}/libsofia-sip-ua.la
-%{_libdir}/libsofia-sip-ua-glib.la
-%{_includedir}/sofia-sip-1.12
+%{_includedir}/sofia-sip-1.13
 %{_pkgconfigdir}/sofia-sip-ua.pc
 %{_pkgconfigdir}/sofia-sip-ua-glib.pc
 
@@ -139,8 +151,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/sip-dig
 %attr(755,root,root) %{_bindir}/sip-options
 %attr(755,root,root) %{_bindir}/stunc
-%{_mandir}/man1/localinfo.1*
-%{_mandir}/man1/sip-date.1*
-%{_mandir}/man1/sip-dig.1*
-%{_mandir}/man1/sip-options.1*
-%{_mandir}/man1/stunc.1*
