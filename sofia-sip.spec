@@ -8,13 +8,13 @@
 Summary:	Sofia SIP User-Agent library
 Summary(pl.UTF-8):	Biblioteka agenta użytkownika Sofia SIP
 Name:		sofia-sip
-Version:	1.13.13
+Version:	1.13.17
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://github.com/freeswitch/sofia-sip/releases
 Source0:	https://github.com/freeswitch/sofia-sip/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	52802d92562e776d2eb14e38efbf0fcc
+# Source0-md5:	587748d1d2c5340b058b44281693423c
 Patch0:		%{name}-link.patch
 URL:		https://sofia-sip.sourceforge.net/
 BuildRequires:	autoconf >= 2.57
